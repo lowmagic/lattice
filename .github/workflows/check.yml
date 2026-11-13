@@ -12,4 +12,4 @@ jobs:
       - run: uv sync --frozen
       - run: make check
   standards:
-    uses: junglestyle/.github/.github/workflows/standards-check.yml@main
+    uses: lowmagic/.github/.github/workflows/standards-check.yml@main

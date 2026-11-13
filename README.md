@@ -110,7 +110,7 @@ Idea Machine's database. Both clones are admin-owned; their data and config (`co
 
 ```sh
 # as admin, once
-git clone git@github.com:junglestyle/lattice.git /mnt/fast/repos/lattice
+git clone git@github.com:lowmagic/lattice.git /mnt/fast/repos/lattice
 # to deploy: pull as admin, then run Idea Machine's installer
 git -C /mnt/fast/repos/lattice pull
 git -C /mnt/fast/repos/ideamachine pull
