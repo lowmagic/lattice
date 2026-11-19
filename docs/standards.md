@@ -44,8 +44,8 @@ from an org rule, it says so, and it wins.
 ## Running it
 
 - CI has no Idea Machine database, so there the database tests skip.
-- Lattice has no installer for the NAS: Idea Machine's installer builds the `Dockerfile`'s image.
-  `systemd/install.sh` runs it on a workstation. The [README](../README.md) has the steps for both.
+- Lattice has no installer for the NAS: Idea Machine's V1 installer built the `Dockerfile`'s image, and
+  `systemd/install.sh` ran it on a workstation.
 
 ## Privacy
 
@@ -69,8 +69,7 @@ Where Lattice doesn't follow the org standards yet. These are debt to pay down, 
 
 - Dependencies: the page's JavaScript and d3 have no decision in Idea Machine's ROADMAP §3.5, where Lattice's decisions
   live.
-- Versions and pins: the NAS runs whatever `git pull` brings (README, "On the NAS"). Nothing pins the commit it
-  deploys.
+- Versions and pins: nothing pinned the commit a deployment ran.
 - Versions and pins: `src/lattice/meaning.py` imports numpy, which `pyproject.toml` doesn't declare (fastembed brings
   it). The build backend, `hatchling`, has no lower bound and isn't in `uv.lock`.
 - Versions and pins: `pyproject.toml` has no `[tool.uv] required-version`, so CI's `setup-uv` (`check.yml`) installs
@@ -80,18 +79,16 @@ Where Lattice doesn't follow the org standards yet. These are debt to pay down, 
 - Versions and pins: the page loads d3 7.9.0 from cdnjs (`index.html:12`, `static/sw.js:5`) with no `integrity`
   checksum.
 - Versions and pins: the only tag, `v1`, is annotated but isn't `vX.Y.Z`, so it isn't a release.
-- Versions and pins: `pyproject.toml` says `0.0.0`, and CI runs only on main and pull requests, so nothing yet fails a
-  `vX.Y.Z` tag that doesn't match it.
 - Config: `mcp.handle`'s `connect` parameter is set only by `tests/test_audit.py:234`, to its default.
-- Privacy: the personal layout this file's Privacy rule forbids is committed: `~/data/code/ideamachine` (README lines
-  10 and 95) and `%h/data/code/lattice` (`systemd/lattice.service`).
+- Privacy: the personal layout this file's Privacy rule forbids is committed in `systemd/lattice.service`
+  (`%h/data/code/lattice`).
 - Secrets: [public-mcp.md](public-mcp.md) (step 2) has the operator `echo` the tunnel's token into
   `config/cloudflared.env` and `chmod 600` it afterwards, so the file starts out with the umask's mode and the token
   lands in shell history.
 - Docs: there's no `docs/SPEC.md` or `docs/ROADMAP.md`. Lattice's spec is a section of Idea Machine's ROADMAP (§3.5),
   and its slices are Idea Machine's Phase 2 slices, with none of its own.
-- Deployment repos: the README and [public-mcp.md](public-mcp.md) carry the NAS deployment: its `/mnt/fast/...`
-  paths, the tailnet port 8444 and the deploy steps. The Privacy override above predates the Deployment repos rule,
+- Deployment repos: [public-mcp.md](public-mcp.md) carries the NAS deployment's `/mnt/fast/...` paths, tailnet port
+  8444 and deploy steps. The Privacy override above predates the Deployment repos rule,
   and Idea Machine's standards list the same facts as belonging in a future `ideamachine-deployment` repo.
 - Containers: `python:3.13-slim` doesn't name the Debian release.
 - Containers: the `Dockerfile` installs uv with `pip`.
